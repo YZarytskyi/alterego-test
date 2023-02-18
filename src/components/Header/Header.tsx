@@ -1,7 +1,10 @@
 import s from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 const Header = () => {
+  const token = useAppSelector(state => state.auth.token);
+
   return (
     <header className={s.header}>
       <NavLink to="/" className={s.logo}>
@@ -25,8 +28,11 @@ const Header = () => {
       </nav>
 
       <div className={s.rightSide}>
-        <NavLink to="/login">Login</NavLink>
-        {/* <NavLink to="/profile">Profile</NavLink> */}
+        {token ? (
+          <NavLink to="/profile">Profile</NavLink>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
       </div>
     </header>
   );

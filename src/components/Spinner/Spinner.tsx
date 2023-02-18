@@ -1,22 +1,22 @@
-import { Rings } from 'react-loader-spinner';
+import { Dna } from 'react-loader-spinner';
 
 export const Spinner = (): JSX.Element => {
   return (
     <div
       style={{
         margin: '0 auto',
-        marginTop: '50px',
+        marginTop: '20px',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
       }}
     >
-      <Rings
+      <Dna
+        visible={true}
         height="80"
-        width="100%"
-        color="#003cff"
-        radius="6"
-        ariaLabel="rings-loading"
+        width="80"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
       />
     </div>
   );

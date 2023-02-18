@@ -8,6 +8,9 @@ const HomePage = React.lazy(() => import('pages/HomePage/HomePage'));
 const NewsPage = React.lazy(() => import('pages/NewsPage/NewsPage'));
 const ProfilePage = React.lazy(() => import('pages/ProfilePage/ProfilePage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = React.lazy(
+  () => import('pages/RegisterPage/RegisterPage')
+);
 
 function App() {
   return (
@@ -18,6 +21,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
