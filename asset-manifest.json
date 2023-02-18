@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/alterego-test/static/css/main.2ecf4b05.css",
+    "main.js": "/alterego-test/static/js/main.81ab4d41.js",
+    "static/js/862.23237d64.chunk.js": "/alterego-test/static/js/862.23237d64.chunk.js",
+    "static/js/455.32e170e7.chunk.js": "/alterego-test/static/js/455.32e170e7.chunk.js",
+    "static/js/136.b6ce4a0e.chunk.js": "/alterego-test/static/js/136.b6ce4a0e.chunk.js",
+    "static/js/628.d9173ebb.chunk.js": "/alterego-test/static/js/628.d9173ebb.chunk.js",
+    "index.html": "/alterego-test/index.html",
+    "main.2ecf4b05.css.map": "/alterego-test/static/css/main.2ecf4b05.css.map",
+    "main.81ab4d41.js.map": "/alterego-test/static/js/main.81ab4d41.js.map",
+    "862.23237d64.chunk.js.map": "/alterego-test/static/js/862.23237d64.chunk.js.map",
+    "455.32e170e7.chunk.js.map": "/alterego-test/static/js/455.32e170e7.chunk.js.map",
+    "136.b6ce4a0e.chunk.js.map": "/alterego-test/static/js/136.b6ce4a0e.chunk.js.map",
+    "628.d9173ebb.chunk.js.map": "/alterego-test/static/js/628.d9173ebb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ecf4b05.css",
+    "static/js/main.81ab4d41.js"
+  ]
+}
