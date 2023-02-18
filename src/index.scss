@@ -1,0 +1,78 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(9, 10, 15);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(32, 32, 32);
+  border-radius: 0.2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  background-color: transparent;
+}
+input {
+  border: none;
+  outline: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

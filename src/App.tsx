@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { Navigate, Route } from 'react-router';
+import { Routes } from 'react-router-dom';
+import { SharedLayout } from './components/SharedLayout/SharedLayout';
+import { Spinner } from './components/Spinner/Spinner';
+
+const HomePage = React.lazy(() => import('pages/HomePage/HomePage'));
+const NewsPage = React.lazy(() => import('pages/NewsPage/NewsPage'));
+const ProfilePage = React.lazy(() => import('pages/ProfilePage/ProfilePage'));
+const LoginPage = React.lazy(() => import('pages/LoginPage/LoginPage'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

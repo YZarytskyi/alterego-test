@@ -1,0 +1,17 @@
+.header {
+  padding: 15px 40px;
+  background-color: thistle;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rightSide {
+  justify-self: right;
+}
+
+.navList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
