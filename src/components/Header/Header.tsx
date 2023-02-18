@@ -19,10 +19,20 @@ const Header = () => {
       <nav>
         <ul className={s.navList}>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) => `${s.link} ${isActive ? s.linkActive : ''}`}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/news">News</NavLink>
+            <NavLink
+              to="/news"
+              className={({ isActive }) => `${s.link} ${isActive ? s.linkActive : ''}`}
+            >
+              News
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -31,7 +41,9 @@ const Header = () => {
         {token ? (
           <NavLink to="/profile">Profile</NavLink>
         ) : (
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/login" className={s.loginLink}>
+            Login
+          </NavLink>
         )}
       </div>
     </header>
