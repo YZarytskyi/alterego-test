@@ -6,7 +6,6 @@ export const newsApi = {
     const { data } = await axios.get<NewsApiResponse>(
       `https://api.nytimes.com/svc/search/v2/articlesearch.json?page=${page}&api-key=mScVMtCvTO7fBzSIQmgG1N6TAs3IXnic`
     );
-    console.log(data);
     return data;
   },
 };

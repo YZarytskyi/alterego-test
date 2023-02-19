@@ -27,7 +27,7 @@ const ProfilePage = () => {
   };
 
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return (

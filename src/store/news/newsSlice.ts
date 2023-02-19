@@ -1,5 +1,5 @@
-import { NewsApiResponse, Article } from 'types/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Article } from 'types/types';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchArticles, fetchMoreArticles } from './newsThunks';
 
 interface InitialState {
@@ -22,53 +22,57 @@ export const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    incrementPage: (state) => {
-      state.page = state.page + 1      
+    incrementPage: state => {
+      state.page = state.page + 1;
+    },
+    setFirstPage: state => {
+      state.page = 0;
+      state.articles = state.articles.slice(0, 10);
     },
     deleteArticle: (state, action) => {
-      state.articles = state.articles.filter(article => article._id !== action.payload)
-    }
+      state.articles = state.articles.filter(
+        article => article._id !== action.payload
+      );
+    },
   },
   extraReducers: builder => {
     builder
-      .addCase(
-        fetchArticles.fulfilled,
-        (state, action: PayloadAction<NewsApiResponse>) => {
-          state.articles = action.payload?.response?.docs?.map(article => ({
-            ...article,
-            _id: article._id.slice(15),
-          }));
-          state.total = action.payload?.response.meta?.hits;
+      .addCase(fetchArticles.fulfilled, (state, action) => {
+        state.articles = action.payload?.response?.docs?.map(article => ({
+          ...article,
+          _id: article._id.slice(15),
+        }));
+        state.total = action.payload?.response.meta?.hits;
+      })
+      .addCase(fetchArticles.rejected, (state, action) => {
+        if (typeof action.payload === 'string') {
+          state.error = action.payload;
         }
-      )
-      .addCase(fetchArticles.rejected, (state, action: any) => {
-        state.error = action.payload;
       });
     builder
-      .addCase(
-        fetchMoreArticles.fulfilled,
-        (state, action: PayloadAction<NewsApiResponse>) => {
-          state.articles = [
-            ...state.articles,
-            ...action.payload?.response?.docs?.map(article => ({
-              ...article,
-              _id: article._id.slice(15),
-            })),
-          ];
-          state.total = action.payload?.response.meta?.hits;
-          state.isLoading = false;
-        }
-      )
+      .addCase(fetchMoreArticles.fulfilled, (state, action) => {
+        state.articles = [
+          ...state.articles,
+          ...action.payload?.response?.docs?.map(article => ({
+            ...article,
+            _id: article._id.slice(15),
+          })),
+        ];
+        state.total = action.payload?.response.meta?.hits;
+        state.isLoading = false;
+      })
       .addCase(fetchMoreArticles.pending, state => {
         state.isLoading = true;
       })
-      .addCase(fetchMoreArticles.rejected, (state, action: any) => {
-        state.error = action.payload;
+      .addCase(fetchMoreArticles.rejected, (state, action) => {
+        if (typeof action.payload === 'string') {
+          state.error = action.payload;
+        }
         state.isLoading = false;
       });
   },
 });
 
-export const {incrementPage, deleteArticle} = newsSlice.actions;
+export const { incrementPage, setFirstPage, deleteArticle } = newsSlice.actions;
 
 export const newsReducer = newsSlice.reducer;

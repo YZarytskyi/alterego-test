@@ -1,12 +1,23 @@
 .header {
   position: relative;
-  padding: 0 30px;
   background-color: #08090f;
   color: white;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
   box-shadow: 0px -1.5px 6px #259dff;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  align-items: center;
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 0 30px;
+  }
 }
 
 .logoLink {
@@ -14,8 +25,11 @@
   align-items: center;
   gap: 0.6rem;
   > span {
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-transform: capitalize;
+    @media screen and (min-width: 480px) {
+      font-size: 1.3rem;
+    }
   }
 }
 
@@ -27,9 +41,13 @@
 
 .link {
   display: block;
-  padding: 15px 20px;
+  padding: 15px 10px;
+  @media screen and (min-width: 480px) {
+    padding: 15px 20px;
+  }
+
   &:hover {
-    background-color: rgb(240, 248, 255, 0.2);
+    background-color: rgb(240, 248, 255, 0.15);
   }
 }
 

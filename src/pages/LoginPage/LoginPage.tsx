@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import backgroundImg from 'assets/login.jpg'
+import backgroundImg from 'assets/login.jpg';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, Navigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { auth } from 'utils/firebase';
 import { setAuthData } from 'store/auth/authSlice';
 import { useForm } from 'react-hook-form';
 import { schema } from './schema';
+import { LoadingButton } from '@mui/lab';
 
 interface IFormInputs {
   email: string;
@@ -32,16 +32,18 @@ export default function LoginPage() {
 
   const handleLogIn = async (email: string, password: string) => {
     try {
-      const { user }: any = await signInWithEmailAndPassword(
+      const { user }: UserCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      const userToken = user.accessToken;
+      const userToken = user.refreshToken;
       const userEmail = user.email;
       dispatch(setAuthData({ userToken, userEmail }));
-    } catch (error: any) {
+    } catch (error) {
       setError(`⚠ Your email or password is incorrect`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,7 +56,6 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     handleLogIn(data.email, data.password);
-    setLoading(false);
   };
 
   if (token) {
@@ -62,7 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Grid container component="main" sx={{ height: 'calc(100vh - 110px)' }}>
+    <Grid container component="main" sx={{ height: 'calc(100vh - 108px)' }}>
       <Grid
         item
         xs={false}
@@ -94,7 +95,7 @@ export default function LoginPage() {
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, width: '240px' }}
           >
             <TextField
               id="email"
@@ -132,20 +133,19 @@ export default function LoginPage() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Typography
-              component="p"
-              sx={{ color: 'red', fontSize: 14 }}
-            >
+            <Typography component="p" sx={{ color: 'red', fontSize: 14 }}>
               {error || ''}
             </Typography>
-            <Button
+            <LoadingButton
               type="submit"
+              loading={loading}
+              loadingIndicator="Loading…"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Login
-            </Button>
+              <span>Login</span>
+            </LoadingButton>
             <Grid container>
               <Grid item>
                 <Link to="/register">Don't have an account? Sign Up</Link>

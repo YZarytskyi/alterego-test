@@ -24,13 +24,17 @@ export const classes = {
   },
   deleteBtn: {
     position: 'absolute',
-    visibility: 'hidden',
-    opacity: 0,
-    pointerEvents: 'none',
-    bottom: 5,
-    right: 5,
+    bottom: 2,
+    right: 2,
     transition:
-      'opacity 250ms cubic-bezier(.42, 0, .58, 1), visibility 250ms cubic-bezier(.42, 0, .58, 1)',
+      'opacity 250ms cubic-bezier(.42, 0, .58, 1), visibility 250ms cubic-bezier(.42, 0, .58, 1), background-color 200ms cubic-bezier(.42, 0, .58, 1)',
+    '@media (min-width: 1200px)': {
+      bottom: 5,
+      right: 5,
+      visibility: 'hidden',
+      opacity: 0,
+      pointerEvents: 'none',
+    },
     '&:hover': {
       backgroundColor: 'rgb(255, 255, 255, 0.3)',
     },

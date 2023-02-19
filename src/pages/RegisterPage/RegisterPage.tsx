@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -10,14 +9,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import backgroundImg from 'assets/register.jpg';
 import { Link, Navigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import { auth } from '../../utils/firebase';
+import { auth } from 'utils/firebase';
 import { useForm } from 'react-hook-form';
-import { setAuthData } from '../../store/auth/authSlice';
+import { setAuthData } from 'store/auth/authSlice';
 import { schema } from '../LoginPage/schema';
+import { LoadingButton } from '@mui/lab';
 
 interface IFormInputs {
   email: string;
@@ -26,23 +26,28 @@ interface IFormInputs {
 
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
+  const token = useAppSelector(state => state.auth.token);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
   const signUp = async (email: string, password: string) => {
     try {
-      const { user }: any = await createUserWithEmailAndPassword(
+      const { user }: UserCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      const userToken = user.accessToken;
+      const userToken = user.refreshToken;
       const userEmail = user.email;
       dispatch(setAuthData({ userToken, userEmail }));
-    } catch (error: any) {
-      const errorMessage = error.message.slice(10);
-      setError(`⚠ ${errorMessage}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorMessage = error.message.slice(10);
+        setError(`⚠ ${errorMessage}`);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,17 +61,14 @@ export default function RegisterPage() {
     setError('');
     setLoading(true);
     signUp(data.email, data.password);
-    setLoading(false);
   };
-
-  const token = useAppSelector(state => state.auth.token);
 
   if (token) {
     return <Navigate to="/" />;
   }
 
   return (
-    <Grid container component="main" sx={{ height: 'calc(100vh - 110px)' }}>
+    <Grid container component="main" sx={{ height: 'calc(100vh - 108px)' }}>
       <Grid
         item
         xs={false}
@@ -83,7 +85,6 @@ export default function RegisterPage() {
         <Box
           sx={{
             my: 10,
-            mx: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -99,7 +100,7 @@ export default function RegisterPage() {
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, width: '240px' }}
           >
             <TextField
               id="email"
@@ -135,8 +136,8 @@ export default function RegisterPage() {
             </Typography>
 
             <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary"/>}
-              label="I want to receive marketing promotions via email."
+              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              label="I want to receive promotions via email."
             />
             <Typography
               component="p"
@@ -144,14 +145,16 @@ export default function RegisterPage() {
             >
               {error || ''}
             </Typography>
-            <Button
+            <LoadingButton
               type="submit"
+              loading={loading}
+              loadingIndicator="Loading…"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
-            </Button>
+              <span>Sign Up</span>
+            </LoadingButton>
             <Grid container justifyContent="center">
               <Grid item>
                 <Link to="/login">Already have an account? Login</Link>

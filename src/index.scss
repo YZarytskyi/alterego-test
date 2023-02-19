@@ -32,6 +32,15 @@ section {
   justify-content: center;
 }
 
+.container {
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 1400px;
+  @media screen and (min-width: 1200px) {
+    padding: 30px;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 14px;
   @media screen and (max-width: 767px) {
@@ -39,7 +48,7 @@ section {
   }
 }
 ::-webkit-scrollbar-track {
-  background-color: #0d0d18;
+  background-color: #08090f;
 }
 ::-webkit-scrollbar-thumb {
   background-color: rgb(32, 32, 32);
@@ -49,8 +58,8 @@ section {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
-     box-shadow: 0 0 0 30px #0d0d18 inset !important;
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #0d0d18 inset !important;
 }
 
 *,

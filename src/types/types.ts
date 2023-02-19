@@ -13,13 +13,14 @@ export interface Article {
 export interface NewsApiResponse {
   response: {
     docs: Array<Article>;
-    meta: Meta;
+    meta: {
+      hits: number;
+      offset: number;
+      time: number;
+    };
   };
 }
 
-interface Meta {
-  hits: number;
-  offset: number;
-  time: number;
+export interface ThunkError {
+  rejectValue: { message: string };
 }
-
