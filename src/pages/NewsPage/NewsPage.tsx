@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
-import ArticleCard from '../../components/ArticleCard/ArticleCard';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { fetchArticles, fetchMoreArticles } from '../../store/news/newsThunks';
 import LoadingButton from '@mui/lab/LoadingButton';
+import ArticleCard from 'components/ArticleCard/ArticleCard';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { fetchArticles, fetchMoreArticles } from 'store/news/newsThunks';
+import { Spinner } from 'components/Spinner/Spinner';
+import ArrowRightAltOutlined from '@mui/icons-material/ArrowRightAltOutlined';
+import Grid from '@mui/material/Grid';
 import s from './NewsPage.module.scss';
-import { Spinner } from '../../components/Spinner/Spinner';
 
 const NewsPage = () => {
   const dispatch = useAppDispatch();
@@ -28,17 +30,20 @@ const NewsPage = () => {
           <Spinner />
         ) : (
           <>
-            <ul className={s.articlesList}>
+            <Grid container spacing={3}>
               {articles.map(article => (
-                <ArticleCard key={article._id} article={article} />
+                <Grid item xs={12} sm={6} md={4} key={article._id}>
+                  <ArticleCard article={article} />
+                </Grid>
               ))}
-            </ul>
+            </Grid>
             <div className={s.loadMoreBtnContainer}>
               <LoadingButton
                 className={s.loadMoreBtn}
                 onClick={loadMoreArticles}
                 loading={isLoading}
-                loadingIndicator="Loading…"
+                endIcon={<ArrowRightAltOutlined />}
+                loadingPosition='end'
                 variant="outlined"
               >
                 Load more

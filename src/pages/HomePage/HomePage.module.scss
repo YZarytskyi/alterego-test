@@ -1,24 +1,5 @@
-.container {
-  margin: 0 auto;
-  padding: 0 30px;
-  max-width: 1400px;
-}
-
-.title {
-  text-align: center;
-  padding: 15px 0;
-}
-
-.articlesList {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.loadMoreBtnContainer {
-  margin: 0 auto;
-  margin-bottom: 2rem;
-  width: fit-content;
+.link {
+  background: #0000be;
+  padding: 10px 30px;
+  border-radius: 5px;
 }

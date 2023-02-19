@@ -1,14 +1,19 @@
+import { createPortal } from 'react-dom';
 import { Dna } from 'react-loader-spinner';
 
 export const Spinner = (): JSX.Element => {
-  return (
+  return createPortal(
     <div
       style={{
-        margin: '0 auto',
-        marginTop: '20px',
+        position: 'absolute',
+        top: 0,
+        left: 0,
         width: '100%',
+        height: '100vh',
+        flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Dna
@@ -18,6 +23,7 @@ export const Spinner = (): JSX.Element => {
         ariaLabel="dna-loading"
         wrapperStyle={{}}
       />
-    </div>
+    </div>,
+    document.body
   );
 };

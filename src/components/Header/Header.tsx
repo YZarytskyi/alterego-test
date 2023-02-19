@@ -1,19 +1,17 @@
-import s from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux-hooks';
+import Button from '@mui/material/Button/Button';
+import logo from 'assets/logo.png';
+import s from './Header.module.scss';
 
 const Header = () => {
   const token = useAppSelector(state => state.auth.token);
 
   return (
     <header className={s.header}>
-      <NavLink to="/" className={s.logo}>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Canal_News_logo.svg/2560px-Canal_News_logo.svg.png"
-          alt="brand logo"
-          width={60}
-          height={60}
-        />
+      <NavLink to="/" className={s.logoLink}>
+        <img src={logo} alt="brand logo" width={30} height={30} />
+        <span>News</span>
       </NavLink>
 
       <nav>
@@ -21,7 +19,9 @@ const Header = () => {
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) => `${s.link} ${isActive ? s.linkActive : ''}`}
+              className={({ isActive }) =>
+                `${s.link} ${isActive ? s.linkActive : ''}`
+              }
             >
               Home
             </NavLink>
@@ -29,7 +29,9 @@ const Header = () => {
           <li>
             <NavLink
               to="/news"
-              className={({ isActive }) => `${s.link} ${isActive ? s.linkActive : ''}`}
+              className={({ isActive }) =>
+                `${s.link} ${isActive ? s.linkActive : ''}`
+              }
             >
               News
             </NavLink>
@@ -41,9 +43,9 @@ const Header = () => {
         {token ? (
           <NavLink to="/profile">Profile</NavLink>
         ) : (
-          <NavLink to="/login" className={s.loginLink}>
-            Login
-          </NavLink>
+          <Button fullWidth variant="contained">
+            <NavLink to="/login">Login</NavLink>
+          </Button>
         )}
       </div>
     </header>

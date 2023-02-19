@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -9,45 +8,38 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import backgroundImg from 'assets/register.jpg';
 import { Link, Navigate } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { auth } from '../../utils/firebase';
 import { useForm } from 'react-hook-form';
 import { setAuthData } from '../../store/auth/authSlice';
-
-const schema = yup.object({
-  email: yup
-    .string()
-    .email('⚠ Invalid email')
-    .required('⚠ This field is required'),
-  password: yup.string().required('⚠ This field is required'),
-});
+import { schema } from '../LoginPage/schema';
 
 interface IFormInputs {
   email: string;
   password: string;
 }
 
-const theme = createTheme();
-
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
 
   const signUp = async (email: string, password: string) => {
     try {
-      const {user}: any = await createUserWithEmailAndPassword(auth, email, password);
+      const { user }: any = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const userToken = user.accessToken;
-      const userEmail = user.email
-      dispatch(setAuthData({userToken, userEmail}))
+      const userEmail = user.email;
+      dispatch(setAuthData({ userToken, userEmail }));
     } catch (error: any) {
       const errorMessage = error.message.slice(10);
       setError(`⚠ ${errorMessage}`);
@@ -74,12 +66,24 @@ export default function RegisterPage() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Grid container component="main" sx={{ height: 'calc(100vh - 110px)' }}>
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: `url(${backgroundImg})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5}>
         <Box
           sx={{
-            marginTop: 8,
+            my: 10,
+            mx: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -95,39 +99,51 @@ export default function RegisterPage() {
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 3 }}
+            sx={{ mt: 1 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  id="email"
-                  {...register('email')}
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  id="password"
-                  {...register('password')}
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
+            <TextField
+              id="email"
+              {...register('email')}
+              margin="normal"
+              fullWidth
+              label="Email"
+              name="email"
+              autoComplete="email"
+            />
+            <Typography
+              component="p"
+              sx={{ color: 'red', fontSize: 14, margin: '5px 0' }}
+            >
+              {errors.email?.message ? errors.email?.message : ' '}
+            </Typography>
+
+            <TextField
+              id="password"
+              {...register('password')}
+              fullWidth
+              margin="normal"
+              name="password"
+              label="Password"
+              type="password"
+              autoComplete="new-password"
+            />
+            <Typography
+              component="p"
+              sx={{ color: 'red', fontSize: 14, margin: '5px 0' }}
+            >
+              {errors.password?.message ? errors.password?.message : ' '}
+            </Typography>
+
+            <FormControlLabel
+              control={<Checkbox value="allowExtraEmails" color="primary"/>}
+              label="I want to receive marketing promotions via email."
+            />
+            <Typography
+              component="p"
+              sx={{ color: 'red', fontSize: 14, margin: '2px 0' }}
+            >
+              {error || ''}
+            </Typography>
             <Button
               type="submit"
               fullWidth
@@ -143,7 +159,7 @@ export default function RegisterPage() {
             </Grid>
           </Box>
         </Box>
-      </Container>
-    </ThemeProvider>
+      </Grid>
+    </Grid>
   );
 }
