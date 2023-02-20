@@ -8,6 +8,7 @@ import App from './App';
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'utils/i18n';
+import "react-loading-skeleton/dist/skeleton.css";
 import './index.scss';
 
 const darkTheme = createTheme({

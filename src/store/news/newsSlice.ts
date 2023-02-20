@@ -6,7 +6,7 @@ import {
 } from './newsThunks';
 
 interface InitialState {
-  articles: Article[] | null;
+  articles: Article[];
   total: number;
   isLoading: boolean;
   isLoadingMore: boolean;
@@ -14,7 +14,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  articles: null,
+  articles: [],
   total: 0,
   isLoading: false,
   isLoadingMore: false,
@@ -26,7 +26,7 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     deleteArticle: (state, action) => {
-      state.articles = state.articles!.filter(
+      state.articles = state.articles.filter(
         article => article._id !== action.payload
       );
     },
@@ -53,7 +53,7 @@ export const newsSlice = createSlice({
     builder
       .addCase(fetchMoreArticles.fulfilled, (state, action) => {
         state.articles = [
-          ...state.articles!,
+          ...state.articles,
           ...action.payload?.response?.docs?.map(article => ({
             ...article,
             _id: article._id.slice(15),

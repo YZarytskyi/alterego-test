@@ -8,10 +8,10 @@ import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchArticles, fetchMoreArticles } from 'store/news/newsThunks';
-import { Spinner } from 'components/Spinner/Spinner';
 import useDebounce from '../../hooks/useDebounce';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import s from './NewsPage.module.scss';
+import { NewsPageSkeleton } from './NewsPageSkeleton';
 
 const NewsPage = () => {
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ const NewsPage = () => {
           placeholder="Search news..."
         />
         {isLoading ? (
-          <Spinner />
+          <NewsPageSkeleton />
         ) : (
           <>
             <Grid container spacing={3}>
