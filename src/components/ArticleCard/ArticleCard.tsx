@@ -35,6 +35,7 @@ const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
         <CardMedia
           component="img"
           src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
+          loading='lazy'
           sx={classes.media}
           alt={title}
           onError={handleImageError}

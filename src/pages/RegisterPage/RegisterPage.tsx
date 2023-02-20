@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form';
 import { setAuthData } from 'store/auth/authSlice';
 import { schema } from '../LoginPage/schema';
 import { LoadingButton } from '@mui/lab';
+import { useTranslation } from 'react-i18next';
 
 interface IFormInputs {
   email: string;
@@ -27,6 +28,7 @@ interface IFormInputs {
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
   const token = useAppSelector(state => state.auth.token);
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
@@ -94,7 +96,7 @@ export default function RegisterPage() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            {t('auth.signUp')}
           </Typography>
           <Box
             component="form"
@@ -107,7 +109,7 @@ export default function RegisterPage() {
               {...register('email')}
               margin="normal"
               fullWidth
-              label="Email"
+              label={t('auth.email')}
               name="email"
               autoComplete="email"
             />
@@ -124,7 +126,7 @@ export default function RegisterPage() {
               fullWidth
               margin="normal"
               name="password"
-              label="Password"
+              label={t('auth.password')}
               type="password"
               autoComplete="new-password"
             />
@@ -137,7 +139,7 @@ export default function RegisterPage() {
 
             <FormControlLabel
               control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive promotions via email."
+              label={t('auth.promo')}
             />
             <Typography
               component="p"
@@ -153,11 +155,11 @@ export default function RegisterPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              <span>Sign Up</span>
+              <span>{t('auth.signUp')}</span>
             </LoadingButton>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link to="/login">Already have an account? Login</Link>
+                <Link to="/login">{t('auth.haveAccount')}</Link>
               </Grid>
             </Grid>
           </Box>

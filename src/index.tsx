@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
 import { store } from './store/store';
+import 'utils/i18n'
 import './index.scss';
 
 const darkTheme = createTheme({

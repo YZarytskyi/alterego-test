@@ -17,6 +17,7 @@ import { setAuthData } from 'store/auth/authSlice';
 import { useForm } from 'react-hook-form';
 import { schema } from './schema';
 import { LoadingButton } from '@mui/lab';
+import { useTranslation } from 'react-i18next';
 
 interface IFormInputs {
   email: string;
@@ -26,6 +27,7 @@ interface IFormInputs {
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const token = useAppSelector(state => state.auth.token);
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
@@ -41,7 +43,7 @@ export default function LoginPage() {
       const userEmail = user.email;
       dispatch(setAuthData({ userToken, userEmail }));
     } catch (error) {
-      setError(`⚠ Your email or password is incorrect`);
+      setError(`⚠ ${t('errors.incorrectCredentials')}`);
     } finally {
       setLoading(false);
     }
@@ -89,7 +91,7 @@ export default function LoginPage() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            {t('auth.login')}
           </Typography>
           <Box
             component="form"
@@ -102,7 +104,7 @@ export default function LoginPage() {
               {...register('email')}
               margin="normal"
               fullWidth
-              label="Email"
+              label={t('auth.email')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -119,7 +121,7 @@ export default function LoginPage() {
               margin="normal"
               fullWidth
               name="password"
-              label="Password"
+              label={t('auth.password')}
               type="password"
               autoComplete="current-password"
             />
@@ -131,7 +133,7 @@ export default function LoginPage() {
             </Typography>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label={t('auth.remember')}
             />
             <Typography component="p" sx={{ color: 'red', fontSize: 14 }}>
               {error || ''}
@@ -144,11 +146,11 @@ export default function LoginPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              <span>Login</span>
+              <span>{t('auth.login')}</span>
             </LoadingButton>
             <Grid container>
               <Grid item>
-                <Link to="/register">Don't have an account? Sign Up</Link>
+                <Link to="/register">{t('auth.noAccount')}</Link>
               </Grid>
             </Grid>
           </Box>

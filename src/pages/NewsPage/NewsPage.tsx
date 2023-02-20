@@ -9,10 +9,12 @@ import { fetchArticles, fetchMoreArticles } from 'store/news/newsThunks';
 import { setFirstPage } from '../../store/news/newsSlice';
 import { Spinner } from 'components/Spinner/Spinner';
 import s from './NewsPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const NewsPage = () => {
   const dispatch = useAppDispatch();
   const { articles, isLoading, error } = useAppSelector(state => state.news);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!articles.length) {
@@ -31,13 +33,13 @@ const NewsPage = () => {
   if (error) {
     return (
       <div className={s.errorContainer}>
-        <p className={s.error}>{`⚠ Something went wrong: ${error}`}</p>
+        <p className={s.error}>{`⚠ ${t('erorrs.global')}: ${error}`}</p>
         <Button
           variant="contained"
           sx={{ mt: 4 }}
           onClick={() => window.location?.reload()}
         >
-          Reload Page
+          {t('buttons.reload')}
         </Button>
       </div>
     );
@@ -45,7 +47,7 @@ const NewsPage = () => {
 
   return (
     <section>
-      <div className='container'>
+      <div className="container">
         <h1 className={s.title}>News</h1>
         {!articles.length ? (
           <Spinner />
@@ -67,7 +69,7 @@ const NewsPage = () => {
                 loadingPosition="end"
                 variant="outlined"
               >
-                Load more
+                {t('buttons.loadMore')}
               </LoadingButton>
             </div>
           </>
