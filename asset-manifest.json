@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/alterego-test/static/css/main.b296294d.css",
-    "main.js": "/alterego-test/static/js/main.4fb9a0ed.js",
-    "static/css/419.6d7a6f66.chunk.css": "/alterego-test/static/css/419.6d7a6f66.chunk.css",
-    "static/js/419.cf35d443.chunk.js": "/alterego-test/static/js/419.cf35d443.chunk.js",
+    "main.css": "/alterego-test/static/css/main.4236e688.css",
+    "main.js": "/alterego-test/static/js/main.770ab97b.js",
+    "static/css/419.06c4eb51.chunk.css": "/alterego-test/static/css/419.06c4eb51.chunk.css",
+    "static/js/419.8b449b29.chunk.js": "/alterego-test/static/js/419.8b449b29.chunk.js",
     "static/css/229.881ad240.chunk.css": "/alterego-test/static/css/229.881ad240.chunk.css",
     "static/js/229.279423b4.chunk.js": "/alterego-test/static/js/229.279423b4.chunk.js",
     "static/js/824.6398d471.chunk.js": "/alterego-test/static/js/824.6398d471.chunk.js",
@@ -20,10 +20,10 @@
     "static/media/user.png": "/alterego-test/static/media/user.fb255d71f62e2d89cdd7.png",
     "static/media/newsCard.jpg": "/alterego-test/static/media/newsCard.7626302c251a3efc64e6.jpg",
     "index.html": "/alterego-test/index.html",
-    "main.b296294d.css.map": "/alterego-test/static/css/main.b296294d.css.map",
-    "main.4fb9a0ed.js.map": "/alterego-test/static/js/main.4fb9a0ed.js.map",
-    "419.6d7a6f66.chunk.css.map": "/alterego-test/static/css/419.6d7a6f66.chunk.css.map",
-    "419.cf35d443.chunk.js.map": "/alterego-test/static/js/419.cf35d443.chunk.js.map",
+    "main.4236e688.css.map": "/alterego-test/static/css/main.4236e688.css.map",
+    "main.770ab97b.js.map": "/alterego-test/static/js/main.770ab97b.js.map",
+    "419.06c4eb51.chunk.css.map": "/alterego-test/static/css/419.06c4eb51.chunk.css.map",
+    "419.8b449b29.chunk.js.map": "/alterego-test/static/js/419.8b449b29.chunk.js.map",
     "229.881ad240.chunk.css.map": "/alterego-test/static/css/229.881ad240.chunk.css.map",
     "229.279423b4.chunk.js.map": "/alterego-test/static/js/229.279423b4.chunk.js.map",
     "824.6398d471.chunk.js.map": "/alterego-test/static/js/824.6398d471.chunk.js.map",
@@ -35,7 +35,7 @@
     "105.5b744eda.chunk.js.map": "/alterego-test/static/js/105.5b744eda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b296294d.css",
-    "static/js/main.4fb9a0ed.js"
+    "static/css/main.4236e688.css",
+    "static/js/main.770ab97b.js"
   ]
 }
