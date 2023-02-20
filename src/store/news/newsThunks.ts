@@ -1,14 +1,12 @@
 import { newsApi } from 'api/newsApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { NewsApiResponse, ThunkError } from 'types/types';
-import { RootState } from '../store';
-import { incrementPage } from './newsSlice';
+import { NewsApiResponse } from 'types/types';
 
-export const fetchArticles = createAsyncThunk<NewsApiResponse>(
+export const fetchArticles = createAsyncThunk<NewsApiResponse, string>(
   'articles/fetchAll',
-  async (_, { rejectWithValue }) => {
+  async (query, { rejectWithValue }) => {
     try {
-      return await newsApi.getArticles();
+      return await newsApi.getArticles(0, query);
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -18,21 +16,21 @@ export const fetchArticles = createAsyncThunk<NewsApiResponse>(
   }
 );
 
-export const fetchMoreArticles = createAsyncThunk<
-  NewsApiResponse,
-  void,
-  { state: RootState }
->('moreArticles/fetch', async (_, { rejectWithValue, getState, dispatch }) => {
-  try {
-    const {
-      news: { page },
-    } = getState();
-    dispatch(incrementPage());
-    return await newsApi.getArticles(page + 1);
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue(error.message);
+interface FetchParams {
+  page: number;
+  query: string;
+}
+
+export const fetchMoreArticles = createAsyncThunk<NewsApiResponse, FetchParams>(
+  'moreArticles/fetch',
+  async ({ page, query }, { rejectWithValue }) => {
+    try {
+      return await newsApi.getArticles(page, query);
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Some error occurred');
     }
-    return rejectWithValue('Some error occurred');
   }
-});
+);

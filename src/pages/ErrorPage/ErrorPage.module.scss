@@ -1,0 +1,14 @@
+.errorContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  padding: 5px 20px;
+  color: red;
+  border-radius: 5px;
+  border: 1px solid red;
+}

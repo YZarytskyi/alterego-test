@@ -32,33 +32,35 @@ const ProfilePage = () => {
 
   return (
     <section>
-      <Card sx={classes.card}>
-        <CardMedia
-          sx={classes.media}
-          component="img"
-          src={user}
-          alt="Profile picture"
-        />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h2"
-            sx={classes.title}
-          >
-            {email}
-          </Typography>
-          <LoadingButton
-            onClick={onClickLogout}
-            loading={isLoading}
-            loadingIndicator="Loading…"
-            variant="outlined"
-            sx={{width: '100%', mt: 4}}
-          >
-            Log out
-          </LoadingButton>
-        </CardContent>
-      </Card>
+      <div className="container">
+        <Card sx={classes.card}>
+          <CardMedia
+            sx={classes.media}
+            component="img"
+            src={user}
+            alt="Profile picture"
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              sx={classes.title}
+            >
+              {email}
+            </Typography>
+            <LoadingButton
+              onClick={onClickLogout}
+              loading={isLoading}
+              loadingIndicator="Loading…"
+              variant="outlined"
+              sx={{ width: '100%', mt: 4 }}
+            >
+              Log out
+            </LoadingButton>
+          </CardContent>
+        </Card>
+      </div>
     </section>
   );
 };

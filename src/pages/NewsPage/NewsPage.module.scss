@@ -1,3 +1,7 @@
+.container {
+  justify-content: flex-start;
+}
+
 .title {
   position: absolute;
   width: 1px;
@@ -24,19 +28,4 @@
   margin: 0 auto;
   margin-top: 2rem;
   width: fit-content;
-}
-
-.errorContainer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.error {
-  padding: 5px 20px;
-  color: red;
-  border-radius: 5px;
-  border: 1px solid red;
 }

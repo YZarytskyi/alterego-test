@@ -4,6 +4,10 @@ export const classes = {
     marginTop: 2,
     padding: '20px 50px',
     borderRadius: 3,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   media: {
     height: 200,

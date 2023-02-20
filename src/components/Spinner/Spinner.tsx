@@ -14,6 +14,7 @@ export const Spinner = (): JSX.Element => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        pointerEvents: 'none',
       }}
     >
       <Dna

@@ -97,7 +97,7 @@ export default function LoginPage() {
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 1, width: '240px' }}
+            sx={{ mt: 1, width: '270px' }}
           >
             <TextField
               id="email"
