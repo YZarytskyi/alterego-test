@@ -3,16 +3,33 @@ import { useAppSelector } from '../../hooks/redux-hooks';
 import Button from '@mui/material/Button/Button';
 import { useTranslation } from 'react-i18next';
 import TranslateIcon from '@mui/icons-material/Translate';
+import { useEffect, useState } from 'react';
 import logo from 'assets/logo.png';
 import s from './Header.module.scss';
-import { useState } from 'react';
 
 const Header = () => {
   const token = useAppSelector(state => state.auth.token);
   const { t, i18n } = useTranslation();
   const [isLngMenuOpen, setIsLngMenuOpen] = useState(false);
 
-  const openSubMenu = () => {
+  useEffect(() => {
+    if (isLngMenuOpen) {
+      document.addEventListener('mousedown', closeSubMenu);
+    }
+    return () => {
+      document.removeEventListener('mousedown', closeSubMenu);
+    };
+  }, [isLngMenuOpen]);
+
+  function closeSubMenu(e: MouseEvent) {
+    const target = e.target as Element;
+    if (target.closest(`.${s.lngBtnContainer}`)) {
+      return;
+    }
+    setIsLngMenuOpen(false);
+  }
+
+  const toggleSubMenu = () => {
     setIsLngMenuOpen(prev => !prev);
   };
 
@@ -60,36 +77,45 @@ const Header = () => {
         </nav>
 
         <div className={s.rightSide}>
-          <Button variant="outlined" className={s.lngBtn} onClick={openSubMenu}>
-            <TranslateIcon />
-          </Button>
-          <ul className={`${s.lngMenu} ${isLngMenuOpen ? s.lngMenuOpen : ''}`}>
-            <li>
-              <Button
-                variant="text"
-                fullWidth
-                sx={{ px: 4, py: 1 }}
-                onClick={translateToEnglish}
-              >
-                English
-              </Button>
-            </li>
-            <li>
-              <Button
-                variant="text"
-                fullWidth
-                sx={{ py: 1 }}
-                onClick={translateToUkrainian}
-              >
-                Українська
-              </Button>
-            </li>
-          </ul>
+          <div className={s.lngBtnContainer}>
+            <Button variant="outlined" onClick={toggleSubMenu}>
+              <TranslateIcon />
+            </Button>
+            <ul
+              className={`${s.lngMenu} ${isLngMenuOpen ? s.lngMenuOpen : ''}`}
+            >
+              <li>
+                <Button
+                  variant="text"
+                  fullWidth
+                  sx={{ px: 4, py: 1 }}
+                  onClick={translateToEnglish}
+                >
+                  English
+                </Button>
+              </li>
+              <li>
+                <Button
+                  variant="text"
+                  fullWidth
+                  sx={{ py: 1 }}
+                  onClick={translateToUkrainian}
+                >
+                  Українська
+                </Button>
+              </li>
+            </ul>
+          </div>
+
           {token ? (
-            <NavLink to="/profile">Profile</NavLink>
+            <Button sx={{ p: 0 }} variant="outlined">
+              <NavLink to="/profile" className={s.profileLink}></NavLink>
+            </Button>
           ) : (
-            <Button fullWidth sx={{ minWidth: 78 }} variant="contained">
-              <NavLink to="/login">{t('auth.login')}</NavLink>
+            <Button sx={{ p: 0 }} variant="outlined">
+              <NavLink to="/login" className={s.loginLink}>
+                {t('auth.login')}
+              </NavLink>
             </Button>
           )}
         </div>

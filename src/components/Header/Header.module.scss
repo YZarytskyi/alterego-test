@@ -54,7 +54,7 @@
 .linkActive {
   position: relative;
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -66,7 +66,6 @@
 }
 
 .rightSide {
-  position: relative;
   display: flex;
   gap: 1rem;
   justify-self: right;
@@ -93,9 +92,32 @@
   }
 }
 
-.lngBtn {
+.lngBtnContainer {
+  position: relative;
   display: none;
   @media screen and (min-width: 480px) {
     display: block;
+  }
+}
+
+.loginLink {
+  min-width: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileLink {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: '';
+    background-image: url('../../assets/user.png');
+    width: 30px;
+    height: 30px;
+    background-size: cover;
   }
 }

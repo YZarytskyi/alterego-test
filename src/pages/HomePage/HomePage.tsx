@@ -37,8 +37,8 @@ const HomePage = () => {
             <span>Українська</span>
           </Button>
         </div>
-        <Button variant="contained" sx={{ mt: 4, mb: 2, py: 1, minWidth: 120 }}>
-          <Link to="/news">{t('buttons.toNews')}</Link>
+        <Button variant="contained" sx={{ mt: 4, mb: 2, p: 0 }}>
+          <Link to="/news" className={s.toNewsBtn}>{t('buttons.toNews')}</Link>
         </Button>
       </div>
     </section>

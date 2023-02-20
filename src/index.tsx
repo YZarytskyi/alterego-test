@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
-import { store } from './store/store';
-import 'utils/i18n'
+import { store, persistor } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import 'utils/i18n';
 import './index.scss';
 
 const darkTheme = createTheme({
@@ -22,10 +23,12 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter basename="/alterego-test">
     <Provider store={store}>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </BrowserRouter>
   // </React.StrictMode>
