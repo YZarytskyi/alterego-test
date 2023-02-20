@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/alterego-test/static/css/main.980d8cc1.css",
+    "main.css": "/alterego-test/static/css/main.b296294d.css",
     "main.js": "/alterego-test/static/js/main.4fb9a0ed.js",
     "static/css/419.6d7a6f66.chunk.css": "/alterego-test/static/css/419.6d7a6f66.chunk.css",
     "static/js/419.cf35d443.chunk.js": "/alterego-test/static/js/419.cf35d443.chunk.js",
@@ -20,7 +20,7 @@
     "static/media/user.png": "/alterego-test/static/media/user.fb255d71f62e2d89cdd7.png",
     "static/media/newsCard.jpg": "/alterego-test/static/media/newsCard.7626302c251a3efc64e6.jpg",
     "index.html": "/alterego-test/index.html",
-    "main.980d8cc1.css.map": "/alterego-test/static/css/main.980d8cc1.css.map",
+    "main.b296294d.css.map": "/alterego-test/static/css/main.b296294d.css.map",
     "main.4fb9a0ed.js.map": "/alterego-test/static/js/main.4fb9a0ed.js.map",
     "419.6d7a6f66.chunk.css.map": "/alterego-test/static/css/419.6d7a6f66.chunk.css.map",
     "419.cf35d443.chunk.js.map": "/alterego-test/static/js/419.cf35d443.chunk.js.map",
@@ -35,7 +35,7 @@
     "105.5b744eda.chunk.js.map": "/alterego-test/static/js/105.5b744eda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.980d8cc1.css",
+    "static/css/main.b296294d.css",
     "static/js/main.4fb9a0ed.js"
   ]
 }
