@@ -18,12 +18,12 @@ const Header = () => {
 
   const translateToEnglish = () => {
     i18n.changeLanguage('en');
-    setIsLngMenuOpen(false)
+    setIsLngMenuOpen(false);
   };
 
   const translateToUkrainian = () => {
     i18n.changeLanguage('ua');
-    setIsLngMenuOpen(false)
+    setIsLngMenuOpen(false);
   };
 
   return (
@@ -65,12 +65,22 @@ const Header = () => {
           </Button>
           <ul className={`${s.lngMenu} ${isLngMenuOpen ? s.lngMenuOpen : ''}`}>
             <li>
-              <Button variant="text" fullWidth sx={{px: 4, py: 1 }} onClick={translateToEnglish}>
+              <Button
+                variant="text"
+                fullWidth
+                sx={{ px: 4, py: 1 }}
+                onClick={translateToEnglish}
+              >
                 English
               </Button>
             </li>
             <li>
-              <Button variant="text" fullWidth sx={{ py: 1 }} onClick={translateToUkrainian}>
+              <Button
+                variant="text"
+                fullWidth
+                sx={{ py: 1 }}
+                onClick={translateToUkrainian}
+              >
                 Українська
               </Button>
             </li>
@@ -78,7 +88,7 @@ const Header = () => {
           {token ? (
             <NavLink to="/profile">Profile</NavLink>
           ) : (
-            <Button fullWidth sx={{minWidth: 78}} variant="contained">
+            <Button fullWidth sx={{ minWidth: 78 }} variant="contained">
               <NavLink to="/login">{t('auth.login')}</NavLink>
             </Button>
           )}
