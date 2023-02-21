@@ -1,5 +1,6 @@
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
 import ArrowRightAltOutlined from '@mui/icons-material/ArrowRightAltOutlined';
 import Grid from '@mui/material/Grid';
@@ -11,7 +12,8 @@ import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from 'hooks/useDebounce';
 import ErrorPage from '../ErrorPage/ErrorPage';
-import ScrollToTopBtn from '../../components/ScrollToTopBtn/ScrollToTopBtn';
+import ScrollToTopBtn from 'components/ScrollToTopBtn/ScrollToTopBtn';
+import { Typography } from '@mui/material';
 import s from './NewsPage.module.scss';
 
 const PER_PAGE: 10 = 10;
@@ -20,7 +22,11 @@ const NewsPage = () => {
   const dispatch = useAppDispatch();
   const { articles, total, offset, isLoading, isLoadingMore, error } =
     useAppSelector(state => state.news);
-  const [query, setQuery] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState<string>(() => {
+    const searchQuery = searchParams.get('query');
+    return searchQuery || '';
+  });
   const [page, setPage] = useState<number>(0);
 
   const abortConRef = useRef<AbortController | null>(null);
@@ -52,7 +58,16 @@ const NewsPage = () => {
   };
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = e => {
-    setQuery(e.target.value);
+    const target = e.target.value;
+    setQuery(target);
+    setPage(0);
+    if (target) {
+      searchParams.set('query', query.trim());
+      setSearchParams(searchParams);
+      return;
+    }
+    searchParams.delete('query');
+    setSearchParams(searchParams);
   };
 
   const hasMoreArticles = total - (offset + PER_PAGE) > 0;
@@ -84,6 +99,11 @@ const NewsPage = () => {
         ) : (
           <>
             <Grid container spacing={3}>
+              {!articles.length && (
+                <Typography variant="h6" sx={{ margin: '0 auto', mt: 4 }}>
+                  Articles not found
+                </Typography>
+              )}
               {articles?.map(article => (
                 <Grid item xs={12} sm={6} md={4} key={article._id}>
                   <ArticleCard article={article} />
