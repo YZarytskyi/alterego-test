@@ -25,9 +25,7 @@ main {
 
 section {
   height: 100%;
-  background-image: url('assets/newsBack.jpg');
-  background-size: cover;
-  background-attachment: fixed;
+  background: linear-gradient(109.6deg, rgb(15, 3, 3) 11.2%, rgb(11, 23, 36) 51.2%, rgb(0, 0, 0) 98.6%);
 }
 
 .container {

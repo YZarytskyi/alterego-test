@@ -4,7 +4,7 @@ import Button from '@mui/material/Button/Button';
 import s from './ErrorPage.module.scss';
 
 interface ErrorPageProps {
-  error: string;
+  error: Error;
 }
 
 const ErrorPage: FC<ErrorPageProps> = ({ error }) => {
@@ -12,7 +12,7 @@ const ErrorPage: FC<ErrorPageProps> = ({ error }) => {
 
   return (
     <div className={s.errorContainer}>
-      <p className={s.error}>{`⚠ ${t('erorrs.global')}: ${error}`}</p>
+      <p className={s.error}>{`⚠ ${t('errors.global')}: ${error.message}`}</p>
       <Button
         variant="contained"
         sx={{ mt: 4 }}

@@ -17,9 +17,9 @@ export const fetchArticles = createAsyncThunk<NewsApiResponse, FetchArticlesPara
         return rejectWithValue('aborted')
       }
       if (error instanceof Error) {
-        return rejectWithValue(error.message);
+        return rejectWithValue(error);
       }
-      return rejectWithValue('Some error occurred');
+      return rejectWithValue({message: 'Some error occurred'});
     }
   }
 );
@@ -36,9 +36,9 @@ export const fetchMoreArticles = createAsyncThunk<NewsApiResponse, FetchMoreArti
       return await newsApi.getArticles(page, query);
     } catch (error) {
       if (error instanceof Error) {
-        return rejectWithValue(error.message);
+        return rejectWithValue(error);
       }
-      return rejectWithValue('Some error occurred');
+      return rejectWithValue({message: 'Some error occurred'});
     }
   }
 );

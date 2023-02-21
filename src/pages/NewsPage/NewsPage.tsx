@@ -4,20 +4,22 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import ArrowRightAltOutlined from '@mui/icons-material/ArrowRightAltOutlined';
 import Grid from '@mui/material/Grid';
 import ArticleCard from 'components/ArticleCard/ArticleCard';
-import Input from '@mui/material/Input';
-import SearchIcon from '@mui/icons-material/Search';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchArticles, fetchMoreArticles } from 'store/news/newsThunks';
 import { NewsPageSkeleton } from './NewsPageSkeleton';
+import Input from '@mui/material/Input';
+import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from 'hooks/useDebounce';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import ScrollToTopBtn from '../../components/ScrollToTopBtn/ScrollToTopBtn';
 import s from './NewsPage.module.scss';
+
+const PER_PAGE: 10 = 10;
 
 const NewsPage = () => {
   const dispatch = useAppDispatch();
-  const { articles, isLoading, isLoadingMore, error } = useAppSelector(
-    state => state.news
-  );
+  const { articles, total, offset, isLoading, isLoadingMore, error } =
+    useAppSelector(state => state.news);
   const [query, setQuery] = useState<string>('');
   const [page, setPage] = useState<number>(0);
 
@@ -53,12 +55,15 @@ const NewsPage = () => {
     setQuery(e.target.value);
   };
 
+  const hasMoreArticles = total - (offset + PER_PAGE) > 0;
+
   if (error) {
     return <ErrorPage error={error} />;
   }
 
   return (
     <section>
+      <ScrollToTopBtn />
       <div className={`container ${s.container}`}>
         <h1 className={s.title}>News</h1>
         <Input
@@ -85,18 +90,20 @@ const NewsPage = () => {
                 </Grid>
               ))}
             </Grid>
-            <div className={s.loadMoreBtnContainer}>
-              <LoadingButton
-                className={s.loadMoreBtn}
-                onClick={incrementPage}
-                loading={isLoadingMore}
-                endIcon={<ArrowRightAltOutlined />}
-                loadingPosition="end"
-                variant="outlined"
-              >
-                {t('buttons.loadMore')}
-              </LoadingButton>
-            </div>
+            {hasMoreArticles && (
+              <div className={s.loadMoreBtnContainer}>
+                <LoadingButton
+                  className={s.loadMoreBtn}
+                  onClick={incrementPage}
+                  loading={isLoadingMore}
+                  endIcon={<ArrowRightAltOutlined />}
+                  loadingPosition="end"
+                  variant="outlined"
+                >
+                  {t('buttons.loadMore')}
+                </LoadingButton>
+              </div>
+            )}
           </>
         )}
       </div>
