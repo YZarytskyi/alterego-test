@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/alterego-test/static/css/main.0369df82.css",
-    "main.js": "/alterego-test/static/js/main.886dbd9b.js",
+    "main.css": "/alterego-test/static/css/main.fb3a1a89.css",
+    "main.js": "/alterego-test/static/js/main.f5324838.js",
     "static/css/419.71a19d81.chunk.css": "/alterego-test/static/css/419.71a19d81.chunk.css",
     "static/js/419.8b449b29.chunk.js": "/alterego-test/static/js/419.8b449b29.chunk.js",
-    "static/css/269.6883de9f.chunk.css": "/alterego-test/static/css/269.6883de9f.chunk.css",
-    "static/js/269.bb2939fe.chunk.js": "/alterego-test/static/js/269.bb2939fe.chunk.js",
+    "static/css/803.3dd5503b.chunk.css": "/alterego-test/static/css/803.3dd5503b.chunk.css",
+    "static/js/803.09c7821d.chunk.js": "/alterego-test/static/js/803.09c7821d.chunk.js",
     "static/js/824.ea82b215.chunk.js": "/alterego-test/static/js/824.ea82b215.chunk.js",
     "static/js/378.c6a969f2.chunk.js": "/alterego-test/static/js/378.c6a969f2.chunk.js",
     "static/js/375.f75ba59e.chunk.js": "/alterego-test/static/js/375.f75ba59e.chunk.js",
@@ -15,17 +15,16 @@
     "static/js/379.2267d3e8.chunk.js": "/alterego-test/static/js/379.2267d3e8.chunk.js",
     "static/media/register.jpg": "/alterego-test/static/media/register.7d648c844c98a3c26f8d.jpg",
     "static/media/login.jpg": "/alterego-test/static/media/login.79f2d464cf6e771231be.jpg",
-    "static/media/newsBack.jpg": "/alterego-test/static/media/newsBack.53d2578189a846997295.jpg",
     "static/media/logo.png": "/alterego-test/static/media/logo.e1debf31c8fa67bd7d2e.png",
     "static/media/user.png": "/alterego-test/static/media/user.fb255d71f62e2d89cdd7.png",
     "static/media/newsCard.jpg": "/alterego-test/static/media/newsCard.7626302c251a3efc64e6.jpg",
     "index.html": "/alterego-test/index.html",
-    "main.0369df82.css.map": "/alterego-test/static/css/main.0369df82.css.map",
-    "main.886dbd9b.js.map": "/alterego-test/static/js/main.886dbd9b.js.map",
+    "main.fb3a1a89.css.map": "/alterego-test/static/css/main.fb3a1a89.css.map",
+    "main.f5324838.js.map": "/alterego-test/static/js/main.f5324838.js.map",
     "419.71a19d81.chunk.css.map": "/alterego-test/static/css/419.71a19d81.chunk.css.map",
     "419.8b449b29.chunk.js.map": "/alterego-test/static/js/419.8b449b29.chunk.js.map",
-    "269.6883de9f.chunk.css.map": "/alterego-test/static/css/269.6883de9f.chunk.css.map",
-    "269.bb2939fe.chunk.js.map": "/alterego-test/static/js/269.bb2939fe.chunk.js.map",
+    "803.3dd5503b.chunk.css.map": "/alterego-test/static/css/803.3dd5503b.chunk.css.map",
+    "803.09c7821d.chunk.js.map": "/alterego-test/static/js/803.09c7821d.chunk.js.map",
     "824.ea82b215.chunk.js.map": "/alterego-test/static/js/824.ea82b215.chunk.js.map",
     "378.c6a969f2.chunk.js.map": "/alterego-test/static/js/378.c6a969f2.chunk.js.map",
     "375.f75ba59e.chunk.js.map": "/alterego-test/static/js/375.f75ba59e.chunk.js.map",
@@ -35,7 +34,7 @@
     "379.2267d3e8.chunk.js.map": "/alterego-test/static/js/379.2267d3e8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0369df82.css",
-    "static/js/main.886dbd9b.js"
+    "static/css/main.fb3a1a89.css",
+    "static/js/main.f5324838.js"
   ]
 }
