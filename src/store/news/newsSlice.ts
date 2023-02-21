@@ -45,6 +45,9 @@ export const newsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchArticles.rejected, (state, action) => {
+        if (action.payload === 'aborted') {
+          return
+        }
         if (typeof action.payload === 'string') {
           state.error = action.payload;
         }

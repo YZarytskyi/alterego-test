@@ -13,6 +13,7 @@ i18n.use(initReactI18next).init({
         },
         auth: {
           login: 'Login',
+          logout: 'Log Out',
           signUp: 'Sign Up',
           email: 'Email',
           password: 'Password',
@@ -50,6 +51,7 @@ i18n.use(initReactI18next).init({
         },
         auth: {
           login: 'Вхід',
+          logout: 'Вихід',
           signUp: 'Реєстрація',
           email: 'Електронна пошта',
           password: 'Пароль',

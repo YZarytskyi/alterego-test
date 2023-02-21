@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/redux-hooks';
+import { useAppSelector } from 'hooks/redux-hooks';
 import Button from '@mui/material/Button/Button';
 import { useTranslation } from 'react-i18next';
 import TranslateIcon from '@mui/icons-material/Translate';
-import { useEffect, useState } from 'react';
 import logo from 'assets/logo.png';
 import s from './Header.module.scss';
 

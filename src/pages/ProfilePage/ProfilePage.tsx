@@ -8,11 +8,13 @@ import { signOut } from 'firebase/auth';
 import user from 'assets/user.png';
 import { classes } from './ProfilePageStyle';
 import { auth } from 'utils/firebase';
+import { useTranslation } from 'react-i18next';
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const { token, email } = useAppSelector(state => state.auth);
   const [isLoading, setIsLoading] = useState(false);
+  const {t} = useTranslation();
 
   const onClickLogout = async () => {
     try {
@@ -56,7 +58,7 @@ const ProfilePage = () => {
               variant="outlined"
               sx={{ width: '100%', mt: 4 }}
             >
-              Log out
+              {t('auth.logout')}
             </LoadingButton>
           </CardContent>
         </Card>

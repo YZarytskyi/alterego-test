@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LoadingButton from '@mui/lab/LoadingButton';
 import ArrowRightAltOutlined from '@mui/icons-material/ArrowRightAltOutlined';
@@ -8,10 +8,10 @@ import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchArticles, fetchMoreArticles } from 'store/news/newsThunks';
-import useDebounce from '../../hooks/useDebounce';
+import { NewsPageSkeleton } from './NewsPageSkeleton';
+import useDebounce from 'hooks/useDebounce';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import s from './NewsPage.module.scss';
-import { NewsPageSkeleton } from './NewsPageSkeleton';
 
 const NewsPage = () => {
   const dispatch = useAppDispatch();
@@ -21,11 +21,22 @@ const NewsPage = () => {
   const [query, setQuery] = useState<string>('');
   const [page, setPage] = useState<number>(0);
 
+  const abortConRef = useRef<AbortController | null>(null);
+
   const debouncedQuery = useDebounce<string>(query, 250);
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(fetchArticles(debouncedQuery));
+    abortConRef.current = new AbortController();
+    dispatch(
+      fetchArticles({
+        query: debouncedQuery,
+        signal: abortConRef.current.signal,
+      })
+    );
+    return () => {
+      abortConRef?.current?.abort();
+    };
   }, [debouncedQuery]);
 
   useEffect(() => {
