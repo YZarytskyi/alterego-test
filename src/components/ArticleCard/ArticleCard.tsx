@@ -1,5 +1,5 @@
-import { IconButton } from '@mui/material';
-import { FC } from 'react';
+import { Grid, IconButton } from '@mui/material';
+import React, { FC } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { deleteArticle } from 'store/news/newsSlice';
@@ -26,35 +26,37 @@ const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
       : article.headline?.main;
 
   return (
-    <Card sx={classes.root}>
-      <Link
-        href={article.web_url}
-        target="_blank"
-        rel="noopener noreferrer nofollow"
-      >
-        <CardMedia
-          component="img"
-          src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
-          loading='lazy'
-          sx={classes.media}
-          alt={title}
-          onError={handleImageError}
-        />
-        <CardContent>
-          <Typography variant="body1" component="p" sx={classes.title}>
-            {title}
-          </Typography>
-          <IconButton
-            aria-label="delete"
-            sx={classes.deleteBtn}
-            onClick={onClickDeleteArticle}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </CardContent>
-      </Link>
-    </Card>
+    <Grid item xs={12} sm={6} md={4}>
+      <Card sx={classes.root}>
+        <Link
+          href={article.web_url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          <CardMedia
+            component="img"
+            src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
+            loading="lazy"
+            sx={classes.media}
+            alt={title}
+            onError={handleImageError}
+          />
+          <CardContent>
+            <Typography variant="body1" component="p" sx={classes.title}>
+              {title}
+            </Typography>
+            <IconButton
+              aria-label="delete"
+              sx={classes.deleteBtn}
+              onClick={onClickDeleteArticle}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </CardContent>
+        </Link>
+      </Card>
+    </Grid>
   );
 };
 
-export default ArticleCard;
+export default React.memo(ArticleCard);

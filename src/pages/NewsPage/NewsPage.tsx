@@ -105,9 +105,7 @@ const NewsPage = () => {
                 </Typography>
               )}
               {articles?.map(article => (
-                <Grid item xs={12} sm={6} md={4} key={article._id}>
-                  <ArticleCard article={article} />
-                </Grid>
+                <ArticleCard article={article} key={article._id} />
               ))}
             </Grid>
             {hasMoreArticles && (
