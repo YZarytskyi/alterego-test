@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from 'components/Header/Header';
+import { Header } from './Header/Header';
 import { Spinner } from 'components/Spinner/Spinner';
-import { Footer } from 'components/Footer/Footer';
+import { Footer } from './Footer/Footer';
 
 const SharedLayout = (): JSX.Element => {
   return (

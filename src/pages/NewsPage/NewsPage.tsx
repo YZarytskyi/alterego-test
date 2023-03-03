@@ -104,10 +104,12 @@ const NewsPage = () => {
                   Articles not found
                 </Typography>
               )}
+              
               {articles?.map(article => (
                 <ArticleCard article={article} key={article._id} />
               ))}
             </Grid>
+
             {hasMoreArticles && (
               <div className={s.loadMoreBtnContainer}>
                 <LoadingButton

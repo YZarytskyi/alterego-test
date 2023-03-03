@@ -1,5 +1,5 @@
+import React, { FC, MouseEventHandler } from 'react';
 import { Grid, IconButton } from '@mui/material';
-import React, { FC } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { deleteArticle } from 'store/news/newsSlice';
@@ -15,7 +15,7 @@ interface ArticleCardProps {
 const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
   const dispatch = useAppDispatch();
 
-  const onClickDeleteArticle = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickDeleteArticle: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     dispatch(deleteArticle(article._id));
   };
